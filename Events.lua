@@ -39,8 +39,14 @@ function Events:Initialize()
     end)
 end
 
-function Events:HandleEvent(_, unit)
-    if unit and unit ~= "player" and not unit:match("^party%d$") then
+function Events:HandleEvent(event, ...)
+    local unit = ...
+
+    if event:match("^UNIT_") and type(unit) == "string" then
+        if unit ~= "player" and not unit:match("^party%d$") then
+            return
+        end
+    elseif event:match("^UNIT_") then
         return
     end
 

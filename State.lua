@@ -142,13 +142,24 @@ local function GetRangeState(unit)
     return true
 end
 
+local function ToSafeNumber(value, fallback)
+    local numericValue = tonumber(value)
+
+    if numericValue == nil then
+        return fallback or 0
+    end
+
+    return numericValue
+end
+
 local function BuildUnitState(unit)
     local connected = UnitIsConnected(unit)
     local dead = UnitIsDead(unit)
     local ghost = UnitIsGhost(unit)
-    local healthCurrent = UnitHealth(unit) or 0
-    local healthMax = UnitHealthMax(unit) or 0
+    local healthCurrent = ToSafeNumber(UnitHealth(unit), 0)
+    local healthMax = ToSafeNumber(UnitHealthMax(unit), 0)
     local healthPct = 0
+    local threatStatus = ToSafeNumber(UnitThreatSituation(unit), 0)
 
     if healthMax > 0 then
         healthPct = math.floor((healthCurrent / healthMax) * 100 + 0.5)
@@ -166,7 +177,7 @@ local function BuildUnitState(unit)
         ghost = ghost,
         inRange = GetRangeState(unit),
         isTarget = UnitIsUnit(unit, "target"),
-        hasAggro = (UnitThreatSituation(unit) or 0) >= 2,
+        hasAggro = threatStatus >= 2,
         healthCurrent = healthCurrent,
         healthMax = healthMax,
         healthPct = healthPct,
