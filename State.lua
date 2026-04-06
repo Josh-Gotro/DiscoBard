@@ -156,14 +156,10 @@ local function BuildUnitState(unit)
     local connected = UnitIsConnected(unit)
     local dead = UnitIsDead(unit)
     local ghost = UnitIsGhost(unit)
-    local healthCurrent = ToSafeNumber(UnitHealth(unit), 0)
+    local healthCurrent = UnitHealth(unit)
     local healthMax = ToSafeNumber(UnitHealthMax(unit), 0)
-    local healthPct = 0
+    local healthPct = nil
     local threatStatus = ToSafeNumber(UnitThreatSituation(unit), 0)
-
-    if healthMax > 0 then
-        healthPct = math.floor((healthCurrent / healthMax) * 100 + 0.5)
-    end
 
     local auraState = ns.Auras:Collect(unit)
 

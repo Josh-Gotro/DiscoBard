@@ -34,6 +34,10 @@ local function FormatHealthText(state)
         return "GHOST"
     end
 
+    if state.healthPct == nil then
+        return ""
+    end
+
     return string.format("%d%%", state.healthPct or 0)
 end
 
