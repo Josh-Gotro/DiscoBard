@@ -48,7 +48,7 @@ end
 local function ApplyIcon(slot, aura)
     if aura then
         slot.Icon:SetTexture(aura.icon)
-        slot.Count:SetText((aura.count and aura.count > 1) and aura.count or "")
+        slot.Count:SetText("")
         slot:Show()
     else
         slot:Hide()

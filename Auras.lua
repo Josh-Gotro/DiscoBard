@@ -22,9 +22,6 @@ local function CopyAura(aura)
         spellID = aura.spellId,
         icon = aura.icon,
         name = aura.name,
-        count = aura.applications or 0,
-        duration = aura.duration or 0,
-        expirationTime = aura.expirationTime or 0,
         dispelName = aura.dispelName,
     }
 end
