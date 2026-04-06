@@ -306,9 +306,9 @@ function Frames.RenderUnit(_, button, state, isTestMode)
     end
 
     button.Health:SetMinMaxValues(0, math.max(state.healthMax or 0, 1))
-    button.Health:SetValue(state.healthCurrent or 0)
+    button.Health:SetValue(state.healthCurrent)
     button.Health:SetStatusBarColor(color[1], color[2], color[3], color[4])
-    button.Name:SetText(state.name or state.unitId or UNKNOWN)
+    button.Name:SetText(state.name)
     button.HealthText:SetText(FormatHealthText(state))
 
     if state.role and state.role ~= "NONE" then

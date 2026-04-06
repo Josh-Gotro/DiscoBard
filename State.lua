@@ -165,7 +165,7 @@ local function BuildUnitState(unit)
 
     return {
         unitId = unit,
-        name = GetUnitName(unit, true) or UNKNOWN,
+        name = GetUnitName(unit, true),
         classToken = select(2, UnitClass(unit)) or "PRIEST",
         role = UnitGroupRolesAssigned(unit) or "NONE",
         connected = connected,
