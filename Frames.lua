@@ -4,6 +4,7 @@ local Frames = ns.Frames
 local Colors = ns.Constants.Colors
 local Textures = ns.Constants.Textures
 local classColors = CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS
+local unpackValues = unpack or table.unpack
 
 local function SetPointFromConfig(frame)
     local point, relativePoint, x, y = ns.Config:GetAnchor()
@@ -17,7 +18,7 @@ local function SavePosition(frame)
 end
 
 local function GetRoleCoords(role)
-    return table.unpack(ns.Constants.RoleCoords[role] or ns.Constants.RoleCoords.DAMAGER)
+    return unpackValues(ns.Constants.RoleCoords[role] or ns.Constants.RoleCoords.DAMAGER)
 end
 
 local function FormatHealthText(state)
@@ -103,7 +104,7 @@ local function CreateUnitButton(parent, index, unit)
 
     button.Background = button:CreateTexture(nil, "BACKGROUND")
     button.Background:SetAllPoints()
-    button.Background:SetColorTexture(table.unpack(Colors.background))
+    button.Background:SetColorTexture(unpackValues(Colors.background))
 
     button.Health = CreateFrame("StatusBar", nil, button)
     button.Health:SetPoint("TOPLEFT", 18, -2)
@@ -136,7 +137,7 @@ local function CreateUnitButton(parent, index, unit)
         edgeFile = Textures.white,
         edgeSize = 1,
     })
-    button.Border:SetBackdropBorderColor(table.unpack(Colors.border))
+    button.Border:SetBackdropBorderColor(unpackValues(Colors.border))
 
     button.DispelSlot = CreateAuraSlot(button, 14)
     button.DispelSlot:SetPoint("TOPRIGHT", -2, -2)
