@@ -1,0 +1,167 @@
+Message: Interface/AddOns/DiscoBard/State.lua:154: attempt to perform arithmetic on local 'healthCurrent' (a secret number value tainted by 'DiscoBard')
+Time: Mon Apr  6 14:09:03 2026
+Count: 858
+Stack:
+[Interface/AddOns/DiscoBard/State.lua]:154: in function <Interface/AddOns/DiscoBard/State.lua:145>
+[Interface/AddOns/DiscoBard/State.lua]:193: in function 'GetDisplayUnits'
+[Interface/AddOns/DiscoBard/Frames.lua]:265: in function 'Refresh'
+[Interface/AddOns/DiscoBard/Events.lua]:38: in function <Interface/AddOns/DiscoBard/Events.lua:37>
+
+Locals:
+unit = "player"
+connected = true
+dead = false
+ghost = false
+healthCurrent = <no value>
+healthMax = 306700
+healthPct = 0
+(*temporary) = nil
+(*temporary) = nil
+(*temporary) = nil
+(*temporary) = nil
+(*temporary) = nil
+(*temporary) = "attempt to perform arithmetic on local 'healthCurrent' (a secret number value tainted by 'DiscoBard')"
+ns = <table> {
+ Commands = <table> {
+ }
+ Addon = Frame {
+ }
+ Frames = <table> {
+ }
+ Constants = <table> {
+ }
+ State = <table> {
+ }
+ addonName = "DiscoBard"
+ Events = <table> {
+ }
+ Config = <table> {
+ }
+ UnitOrder = <table> {
+ }
+ Auras = <table> {
+ }
+ Filters = <table> {
+ }
+}
+
+
+##
+Message: Interface/AddOns/DiscoBard/State.lua:154: attempt to perform arithmetic on local 'healthCurrent' (a secret number value tainted by 'DiscoBard')
+Time: Mon Apr  6 14:09:02 2026
+Count: 5
+Stack:
+[Interface/AddOns/DiscoBard/State.lua]:154: in function <Interface/AddOns/DiscoBard/State.lua:145>
+[Interface/AddOns/DiscoBard/State.lua]:193: in function 'GetDisplayUnits'
+[Interface/AddOns/DiscoBard/Frames.lua]:265: in function 'Refresh'
+[Interface/AddOns/DiscoBard/Events.lua]:51: in function 'FullRefresh'
+[Interface/AddOns/DiscoBard/Events.lua]:47: in function 'HandleEvent'
+[Interface/AddOns/DiscoBard/Events.lua]:29: in function <Interface/AddOns/DiscoBard/Events.lua:28>
+
+Locals:
+unit = "player"
+connected = true
+dead = false
+ghost = false
+healthCurrent = <no value>
+healthMax = 289340
+healthPct = 0
+(*temporary) = nil
+(*temporary) = nil
+(*temporary) = nil
+(*temporary) = nil
+(*temporary) = nil
+(*temporary) = "attempt to perform arithmetic on local 'healthCurrent' (a secret number value tainted by 'DiscoBard')"
+ns = <table> {
+ Commands = <table> {
+ }
+ Addon = Frame {
+ }
+ Frames = <table> {
+ }
+ Constants = <table> {
+ }
+ State = <table> {
+ }
+ addonName = "DiscoBard"
+ Events = <table> {
+ }
+ Config = <table> {
+ }
+ UnitOrder = <table> {
+ }
+ Auras = <table> {
+ }
+ Filters = <table> {
+ }
+}
+##
+
+Message: Interface/AddOns/DiscoBard/Events.lua:43: attempt to index local 'unit' (a boolean value)
+Time: Mon Apr  6 14:09:02 2026
+Count: 1
+Stack:
+[Interface/AddOns/DiscoBard/Events.lua]:43: in function 'HandleEvent'
+[Interface/AddOns/DiscoBard/Events.lua]:29: in function <Interface/AddOns/DiscoBard/Events.lua:28>
+
+Locals:
+self = <table> {
+ frame = Frame {
+ }
+}
+_ = "PLAYER_ENTERING_WORLD"
+unit = true
+(*temporary) = nil
+(*temporary) = true
+(*temporary) = nil
+(*temporary) = "attempt to index local 'unit' (a boolean value)"
+##
+
+Message: Interface/AddOns/DiscoBard/State.lua:154: attempt to perform arithmetic on local 'healthCurrent' (a secret number value tainted by 'DiscoBard')
+Time: Mon Apr  6 14:09:01 2026
+Count: 1
+Stack:
+[Interface/AddOns/DiscoBard/State.lua]:154: in function <Interface/AddOns/DiscoBard/State.lua:145>
+[Interface/AddOns/DiscoBard/State.lua]:193: in function 'GetDisplayUnits'
+[Interface/AddOns/DiscoBard/Frames.lua]:265: in function 'Refresh'
+[Interface/AddOns/DiscoBard/Events.lua]:51: in function 'FullRefresh'
+[Interface/AddOns/DiscoBard/Core.lua]:23: in function <Interface/AddOns/DiscoBard/Core.lua:18>
+[Interface/AddOns/DiscoBard/Core.lua]:28: in function <Interface/AddOns/DiscoBard/Core.lua:26>
+
+Locals:
+unit = "player"
+connected = true
+dead = false
+ghost = false
+healthCurrent = <no value>
+healthMax = 289340
+healthPct = 0
+(*temporary) = nil
+(*temporary) = nil
+(*temporary) = nil
+(*temporary) = nil
+(*temporary) = nil
+(*temporary) = "attempt to perform arithmetic on local 'healthCurrent' (a secret number value tainted by 'DiscoBard')"
+ns = <table> {
+ Commands = <table> {
+ }
+ Addon = Frame {
+ }
+ Frames = <table> {
+ }
+ Constants = <table> {
+ }
+ State = <table> {
+ }
+ addonName = "DiscoBard"
+ Events = <table> {
+ }
+ Config = <table> {
+ }
+ UnitOrder = <table> {
+ }
+ Auras = <table> {
+ }
+ Filters = <table> {
+ }
+}
