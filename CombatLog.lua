@@ -10,6 +10,8 @@ local watchedEvents = {
     "ENCOUNTER_END",
 }
 
+local _ = watchedEvents
+
 local function IsAugmentationPlayer()
     if select(2, UnitClass("player")) ~= "EVOKER" then
         return false
@@ -52,10 +54,6 @@ function CombatLog:Initialize()
     frame:SetScript("OnEvent", function(_, event, ...)
         self:HandleEvent(event, ...)
     end)
-
-    for _, eventName in ipairs(watchedEvents) do
-        frame:RegisterEvent(eventName)
-    end
 
     self.frame = frame
 end
