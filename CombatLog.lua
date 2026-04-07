@@ -57,6 +57,7 @@ function CombatLog:Initialize()
     frame:RegisterEvent("PLAYER_REGEN_DISABLED")
     frame:RegisterEvent("PLAYER_REGEN_ENABLED")
     frame:RegisterEvent("ENCOUNTER_START")
+    frame:RegisterEvent("ENCOUNTER_END")
 
     self.frame = frame
 end
