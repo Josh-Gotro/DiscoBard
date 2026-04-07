@@ -1,83 +1,98 @@
 # DiscoBard
 
-DiscoBard is a Retail World of Warcraft addon that replaces the default 5-man party
-frames with a compact custom layout focused on clarity and presentation.
+DiscoBard is a Retail World of Warcraft addon focused on post-combat support review
+for Augmentation Evoker in the Midnight era.
 
-This is an MVP scaffold intended for safe UI customization under the Midnight addon
-restrictions. It does not provide recommendations, priority suggestions, rotation
-guidance, or automation beyond normal secure frame interaction.
+This version is intentionally retrospective. It captures your own Augmentation support
+events during combat and shows a review window after the segment ends. It does not
+recommend actions, rank targets, or provide live combat guidance.
+
+## Current MVP
+
+DiscoBard tracks:
+
+- `Ebon Might` casts and target coverage
+- `Prescience` casts and target coverage
+- `Blistering Scales` casts and target coverage
+- `Breath of Eons` casts
+- a short per-segment timeline of tracked casts and aura events
+
+It shows a post-combat review panel with:
+
+- segment type and duration
+- cast counts
+- Ebon Might coverage by target
+- Prescience coverage by target
+- recent tracked timeline events
 
 ## Install
 
-1. Copy the `DiscoBard` folder to your Windows WoW AddOns directory:
+Copy the `DiscoBard` addon folder to:
 
-   `World of Warcraft\_retail_\Interface\AddOns\DiscoBard`
+`World of Warcraft\_retail_\Interface\AddOns\DiscoBard`
 
-2. Confirm this file exists:
+Confirm this file exists:
 
-   `World of Warcraft\_retail_\Interface\AddOns\DiscoBard\DiscoBard.toc`
-
-3. Start WoW.
-
-4. At character select, click `AddOns` and make sure `DiscoBard` is enabled.
-
-5. If needed, enable `Load out of date AddOns`.
+`World of Warcraft\_retail_\Interface\AddOns\DiscoBard\DiscoBard.toc`
 
 ## Slash Commands
 
-- `/dbard unlock`
+- `/dbard`
+- `/dbard show`
+- `/dbard hide`
+- `/dbard toggle`
+- `/dbard clear`
 - `/dbard lock`
-- `/dbard test`
+- `/dbard unlock`
 - `/dbard reset`
-- `/dbard size <width> <height>`
-- `/dbard spacing <value>`
-- `/dbard font <size>`
-- `/dbard orientation <vertical|horizontal>`
+- `/dbard debug`
 
 Alias:
 
 - `/disco`
 
-Examples:
-
-- `/dbard test`
-- `/dbard unlock`
-- `/dbard size 220 36`
-- `/dbard spacing 8`
-- `/dbard font 12`
-- `/dbard orientation vertical`
-
 ## First Test Pass
 
-1. Log in and run `/dbard test`.
-2. Confirm five fake unit frames appear.
-3. Run `/dbard unlock` and move the frame.
-4. Run `/dbard lock`.
-5. Run `/reload` and confirm the position persists.
-6. Run `/dbard test` again to leave test mode.
-7. Join a party and confirm live units appear.
+1. Log in on an Augmentation Evoker.
+2. Enter combat and cast `Ebon Might`, `Prescience`, and `Blistering Scales`.
+3. Leave combat.
+4. Confirm the DiscoBard review window appears automatically.
+5. Run `/dbard` to reopen it if needed.
+6. Use `Prev` and `Next` after multiple segments to browse history.
 
-## Current MVP Features
+## Architecture
 
-- Movable root frame container
-- One custom frame per visible party unit
-- Secure unit buttons with click-to-target
-- Name and health display
-- Dead, ghost, and offline state handling
-- Role icon
-- Range fade
-- Aggro border
-- Target highlight
-- One dispellable debuff slot
-- One tracked debuff slot
-- One defensive buff slot
-- Ready-check indicator
-- SavedVariables-backed layout settings
+- `Core.lua`
+  Boot/init
+- `Constants.lua`
+  tracked spell IDs and UI defaults
+- `Config.lua`
+  SavedVariables
+- `Segments.lua`
+  segment lifecycle and history
+- `CombatLog.lua`
+  event routing
+- `Trackers/Augmentation.lua`
+  Aug-specific combat log tracking
+- `Report.lua`
+  segment summary formatting
+- `UI.lua`
+  post-combat review window
+- `Commands.lua`
+  slash commands
 
-## Current Caveats
+## Deliberate Non-Goals
 
-- The `.toc` interface number may need to be updated for the exact Midnight build.
-- Built-in Blizzard frame hiding is best-effort and may need adjustment if Blizzard
-  changes frame names.
-- Aura access assumptions are isolated in `Auras.lua` and should be verified against
-  the current Retail API if behavior changes after a patch.
+DiscoBard does not currently do:
+
+- live recommendations
+- target ranking
+- best-buff-target logic
+- exact Augmentation contributed DPS attribution
+- frame sorting or frame replacement
+
+## Caveats
+
+- This addon depends on the live combat log and stores its own summaries.
+- It does not assume Blizzard exposes a full historical fight breakdown API after combat.
+- Exact Augmentation added-damage attribution is out of scope for this MVP.

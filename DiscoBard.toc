@@ -1,16 +1,16 @@
 ## Interface: 120000
 ## Title: DiscoBard
-## Notes: Compact replacement party frames for 5-man groups.
+## Notes: Post-combat Augmentation support review for Retail WoW.
 ## Author: Codex
-## Version: 0.1.0
+## Version: 0.2.0
 ## SavedVariables: DiscoBardDB
 
 Core.lua
 Constants.lua
 Config.lua
-Filters.lua
-Auras.lua
-State.lua
-Frames.lua
-Events.lua
+Segments.lua
+CombatLog.lua
+Trackers/Augmentation.lua
+Report.lua
+UI.lua
 Commands.lua

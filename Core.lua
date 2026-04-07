@@ -3,24 +3,22 @@ local addonName, ns = ...
 ns.addonName = addonName
 ns.Constants = ns.Constants or {}
 ns.Config = ns.Config or {}
-ns.Filters = ns.Filters or {}
-ns.Auras = ns.Auras or {}
-ns.State = ns.State or {}
-ns.Frames = ns.Frames or {}
-ns.Events = ns.Events or {}
+ns.Segments = ns.Segments or {}
+ns.CombatLog = ns.CombatLog or {}
+ns.Report = ns.Report or {}
+ns.UI = ns.UI or {}
 ns.Commands = ns.Commands or {}
-
-ns.UnitOrder = { "player", "party1", "party2", "party3", "party4" }
+ns.Trackers = ns.Trackers or {}
 
 local addon = CreateFrame("Frame")
 ns.Addon = addon
 
 local function OnPlayerLogin()
     ns.Config:Initialize()
-    ns.Frames:Initialize()
+    ns.Segments:Initialize()
+    ns.UI:Initialize()
+    ns.CombatLog:Initialize()
     ns.Commands:Initialize()
-    ns.Events:Initialize()
-    ns.Events:FullRefresh()
 end
 
 addon:SetScript("OnEvent", function(_, event, ...)
