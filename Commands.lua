@@ -7,7 +7,7 @@ local function Print(message)
 end
 
 local function PrintHelp()
-    Print("Commands: ping")
+    Print("Commands: ping, status")
 end
 
 function Commands.Initialize()
@@ -19,6 +19,16 @@ function Commands.Initialize()
 
         if command == "ping" then
             Print("Loaded.")
+            return
+        end
+
+        if command == "status" then
+            local active = ns.Segments:GetActive()
+            if active then
+                Print("Tracking active segment #" .. active.id)
+            else
+                Print("No active segment.")
+            end
             return
         end
 

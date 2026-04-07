@@ -14,6 +14,9 @@ local addon = CreateFrame("Frame")
 ns.Addon = addon
 
 local function OnPlayerLogin()
+    ns.Config:Initialize()
+    ns.Segments:Initialize()
+    ns.CombatLog:Initialize()
     ns.Commands:Initialize()
 end
 
