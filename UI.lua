@@ -10,11 +10,6 @@ local function SetPointFromConfig(frame)
     frame:SetPoint(point, UIParent, relativePoint, x, y)
 end
 
-local function SavePosition(frame)
-    local point, _, relativePoint, x, y = frame:GetPoint(1)
-    ns.Config:SetAnchor(point, relativePoint, x, y)
-end
-
 local function ApplyBackdrop(frame, background, border)
     frame:SetBackdrop({
         bgFile = Textures.white,
@@ -52,19 +47,7 @@ function UI:Initialize()
 
     local frame = CreateFrame("Frame", ns.addonName .. "ReviewFrame", UIParent, "BackdropTemplate")
     frame:SetSize(ns.Config:Get("width"), ns.Config:Get("height"))
-    frame:SetMovable(true)
     frame:SetClampedToScreen(true)
-    frame:RegisterForDrag("LeftButton")
-    frame:SetScript("OnDragStart", function(current)
-        if ns.Config:Get("locked") then
-            return
-        end
-        current:StartMoving()
-    end)
-    frame:SetScript("OnDragStop", function(current)
-        current:StopMovingOrSizing()
-        SavePosition(current)
-    end)
     ApplyBackdrop(frame, Colors.background, Colors.border)
     SetPointFromConfig(frame)
     frame:Hide()
@@ -122,6 +105,8 @@ function UI:Initialize()
 end
 
 function UI:ApplyLayout()
+    self:Initialize()
+
     if not self.frame then
         return
     end
@@ -130,15 +115,19 @@ function UI:ApplyLayout()
     SetPointFromConfig(self.frame)
 end
 
-function UI:SetLocked(locked)
+function UI:SetLocked(_)
+    self:Initialize()
+
     if not self.frame then
         return
     end
 
-    self.frame:EnableMouse(not locked)
+    self.frame:EnableMouse(false)
 end
 
 function UI:SetSegment(segment)
+    self:Initialize()
+
     local history = ns.Segments:GetHistory()
     for index, existing in ipairs(history) do
         if existing == segment then
@@ -168,6 +157,8 @@ function UI:SelectRelative(offset)
 end
 
 function UI:Refresh()
+    self:Initialize()
+
     if not self.frame then
         return
     end
@@ -190,17 +181,21 @@ function UI:Refresh()
 end
 
 function UI:Show()
+    self:Initialize()
     self:Refresh()
     self.frame:Show()
 end
 
 function UI:Hide()
+    self:Initialize()
     if self.frame then
         self.frame:Hide()
     end
 end
 
 function UI:Toggle()
+    self:Initialize()
+
     if not self.frame then
         return
     end
