@@ -104,21 +104,18 @@ function UI:Initialize()
         self:Refresh()
     end)
 
-    frame.ReportScroll = CreateFrame("ScrollFrame", nil, frame, "UIPanelScrollFrameTemplate")
-    frame.ReportScroll:SetPoint("TOPLEFT", 12, -72)
-    frame.ReportScroll:SetPoint("BOTTOMRIGHT", -28, 12)
+    frame.Content = CreateFrame("Frame", nil, frame, "BackdropTemplate")
+    frame.Content:SetPoint("TOPLEFT", 12, -72)
+    frame.Content:SetPoint("BOTTOMRIGHT", -12, 12)
+    ApplyBackdrop(frame.Content, Colors.panel, Colors.border)
 
-    frame.ReportText = CreateFrame("EditBox", nil, frame.ReportScroll)
-    frame.ReportText:SetMultiLine(true)
-    frame.ReportText:SetAutoFocus(false)
-    frame.ReportText:SetFontObject(ChatFontNormal)
-    frame.ReportText:SetWidth(ns.Config:Get("width") - 56)
-    frame.ReportText:SetTextInsets(4, 4, 4, 4)
-    frame.ReportText:SetScript("OnEscapePressed", function()
-        frame:Hide()
-    end)
-
-    frame.ReportScroll:SetScrollChild(frame.ReportText)
+    frame.ReportText = frame.Content:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    frame.ReportText:SetPoint("TOPLEFT", 10, -10)
+    frame.ReportText:SetPoint("TOPRIGHT", -10, -10)
+    frame.ReportText:SetJustifyH("LEFT")
+    frame.ReportText:SetJustifyV("TOP")
+    frame.ReportText:SetSpacing(2)
+    frame.ReportText:SetText("")
 
     self.frame = frame
     self:SetLocked(ns.Config:Get("locked"))
@@ -130,7 +127,6 @@ function UI:ApplyLayout()
     end
 
     self.frame:SetSize(ns.Config:Get("width"), ns.Config:Get("height"))
-    self.frame.ReportText:SetWidth(ns.Config:Get("width") - 56)
     SetPointFromConfig(self.frame)
 end
 
@@ -191,7 +187,6 @@ function UI:Refresh()
     self.frame.Title:SetText("DiscoBard Review")
     self.frame.Subtitle:SetText(ns.Report:BuildHistoryLabel(segment))
     self.frame.ReportText:SetText(ns.Report:BuildSegmentText(segment))
-    self.frame.ReportText:HighlightText(0, 0)
 end
 
 function UI:Show()
